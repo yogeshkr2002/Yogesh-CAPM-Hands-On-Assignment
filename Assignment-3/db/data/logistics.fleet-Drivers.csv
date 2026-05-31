@@ -1,0 +1,5 @@
+ID,name,licenseNumber,licenseExpiry,phone,email,experience,rating,status,vehicle_ID,joinDate
+aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa,Rajesh Kumar,DL12345,2030-01-01,9876543210,rajesh@speed.com,5,4.8,Available,11111111-1111-1111-1111-111111111111,2021-05-10
+bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb,Amit Singh,DL23456,2031-02-01,9876543211,amit@speed.com,7,4.5,OnTrip,22222222-2222-2222-2222-222222222222,2020-03-15
+cccccccc-cccc-cccc-cccc-cccccccccccc,Rohit Sharma,DL34567,2032-03-01,9876543212,rohit@speed.com,4,4.9,Available,33333333-3333-3333-3333-333333333333,2022-07-20
+dddddddd-dddd-dddd-dddd-dddddddddddd,Karan Patel,DL45678,2030-04-01,9876543213,karan@speed.com,6,4.2,OnLeave,55555555-5555-5555-5555-555555555555,2021-11-01

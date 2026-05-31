@@ -1,0 +1,5 @@
+ID,name,company,phone,email,address,city,pincode,gstNumber,tier
+e1111111-1111-1111-1111-111111111111,Ravi Traders,Ravi Traders Pvt Ltd,9876500001,ravi@traders.com,MG Road,Bangalore,560001,GST123456,Regular
+e2222222-2222-2222-2222-222222222222,ABC Electronics,ABC Electronics Ltd,9876500002,contact@abcelec.com,Electronic City,Bangalore,560100,GST234567,Premium
+e3333333-3333-3333-3333-333333333333,Global Exports,Global Exports Pvt Ltd,9876500003,info@global.com,MIDC Industrial Area,Mumbai,400001,GST345678,Enterprise
+e4444444-4444-4444-4444-444444444444,Fresh Foods,Fresh Foods Ltd,9876500004,sales@freshfoods.com,Gachibowli,Hyderabad,500032,GST456789,Premium

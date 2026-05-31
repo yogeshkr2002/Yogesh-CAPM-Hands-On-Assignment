@@ -1,0 +1,59 @@
+@baseUrl = http://localhost:4004/odata/v4/event
+
+### GET published events sorted by startDate
+GET {{baseUrl}}/Events?$filter=status eq 'Published'&$orderby=startDate
+
+### GET events filtered by type Workshop
+GET {{baseUrl}}/Events?$filter=eventType eq 'Workshop'
+
+### GET all registrations for a specific event
+GET {{baseUrl}}/Registrations?$filter=event_ID eq aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+
+### POST a new registration
+POST {{baseUrl}}/Registrations
+Content-Type: application/json
+
+{
+  "event":{
+    "ID":"aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
+  },
+  "attendeeName":"Karan Patel",
+  "attendeeEmail":"karan@gmail.com",
+  "attendeePhone":"9877009999",
+  "company":"Wipro",
+  "ticketType":"General",
+  "registrationDate":"2026-06-01",
+  "amountPaid":2500,
+  "paymentId":"PAY999"
+}
+
+### GET speakers sorted by rating desc
+GET {{baseUrl}}/Speakers?$orderby=rating desc
+
+### GET events with available seats
+GET {{baseUrl}}/Events?$filter=registeredCount lt maxAttendees
+
+### PATCH event status from Draft to Published
+PATCH {{baseUrl}}/Events(cccccccc-cccc-cccc-cccc-cccccccccccc)
+Content-Type: application/json
+
+{
+  "status":"Published"
+}
+
+### POST feedback for an event
+POST {{baseUrl}}/Feedback
+Content-Type: application/json
+
+{
+  "event":{
+    "ID":"aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
+  },
+  "attendeeEmail":"newuser@gmail.com",
+  "overallRating":5,
+  "contentRating":5,
+  "venueRating":4,
+  "speakerRating":5,
+  "comment":"Excellent conference",
+  "submittedAt":"2026-07-10T19:00:00Z"
+}

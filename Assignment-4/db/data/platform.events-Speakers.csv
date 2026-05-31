@@ -1,0 +1,6 @@
+ID,name,email,phone,bio,company,designation,expertise,photoUrl,rating,totalTalks,isActive
+11111111-aaaa-1111-aaaa-111111111111,Rajesh Kumar,rajesh@gmail.com,9876500001,AI Expert,Google,Senior Engineer,AI ML,https://speaker1.com,4.8,50,true
+22222222-bbbb-2222-bbbb-222222222222,Priya Sharma,priya@gmail.com,9876500002,Frontend Architect,Microsoft,Architect,React Angular,https://speaker2.com,4.7,40,true
+33333333-cccc-3333-cccc-333333333333,Amit Verma,amit@gmail.com,9876500003,Cloud Consultant,AWS,Consultant,AWS DevOps,https://speaker3.com,4.9,65,true
+44444444-dddd-4444-dddd-444444444444,Neha Patel,neha@gmail.com,9876500004,Startup Mentor,Startup India,Mentor,Entrepreneurship,https://speaker4.com,4.6,35,true
+55555555-eeee-5555-eeee-555555555555,Rohit Singh,rohit@gmail.com,9876500005,Data Scientist,IBM,Lead Data Scientist,Data Science Python,https://speaker5.com,4.5,30,true

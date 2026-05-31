@@ -1,0 +1,52 @@
+@baseUrl = http://localhost:4004/odata/v4/logistics
+
+### GET available vehicles
+GET {{baseUrl}}/Vehicles?$filter=status eq 'Available'
+
+### GET shipments filtered by status InTransit
+GET {{baseUrl}}/Shipments?$filter=status eq 'InTransit'
+
+### GET all shipments for a specific customer
+GET {{baseUrl}}/Shipments?$filter=customer_ID eq e1111111-1111-1111-1111-111111111111
+
+### POST a new shipment booking
+POST {{baseUrl}}/Shipments
+Content-Type: application/json
+
+{
+  "trackingNumber":"SL-2026-99999",
+  "customer":{
+    "ID":"e1111111-1111-1111-1111-111111111111"
+  },
+  "driver":{
+    "ID":"aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
+  },
+  "vehicle":{
+    "ID":"11111111-1111-1111-1111-111111111111"
+  },
+  "pickupAddress":"Whitefield",
+  "deliveryAddress":"Electronic City",
+  "pickupCity":"Bangalore",
+  "deliveryCity":"Bangalore",
+  "weight":100,
+  "bookedAt":"2026-06-01T10:00:00Z",
+  "estimatedDelivery":"2026-06-02",
+  "actualDistance":35,
+  "charges":1200
+}
+
+### PATCH shipment status to Delivered
+PATCH {{baseUrl}}/Shipments(22222222-bbbb-2222-bbbb-222222222222)
+Content-Type: application/json
+
+{
+  "status":"Delivered",
+  "deliveredAt":"2026-06-02T18:00:00Z"
+}
+
+### GET routes between two cities
+GET {{baseUrl}}/Routes?$filter=fromCity eq 'Bangalore' and toCity eq 'Chennai'
+
+### GET drivers sorted by rating descending
+GET {{baseUrl}}/Drivers?$orderby=rating desc
+
