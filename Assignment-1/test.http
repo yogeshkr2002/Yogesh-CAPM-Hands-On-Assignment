@@ -60,7 +60,7 @@ Content-Type: application/json
 GET {{baseUrl}}/Patients?$filter=bloodGroup eq 'O_POS'
 
 ### PATCH appointment status to Completed
-PATCH {{baseUrl}}/Appointments(359c34ce-d31c-4e07-9663-08ac60b16d74)
+PATCH {{baseUrl}}/Appointments(a3333333-3333-3333-3333-333333333333)
 Content-Type: application/json
 
 {
