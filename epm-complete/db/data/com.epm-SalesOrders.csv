@@ -1,0 +1,4 @@
+ID,orderNumber,customer_ID,orderDate,totalAmount,currency_code,status
+so1,SO1001,cus1,2026-06-01,55800,INR,Created
+so2,SO1002,cus2,2026-06-02,65000,INR,Created
+so3,SO1003,cus3,2026-06-03,1600,INR,Delivered

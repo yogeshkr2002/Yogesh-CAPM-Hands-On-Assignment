@@ -1,0 +1,4 @@
+ID,poNumber,supplier_ID,orderDate,totalAmount,currency_code,status
+po1,PO1001,sup1,2026-06-01,110000,INR,Created
+po2,PO1002,sup2,2026-06-02,130000,INR,Approved
+po3,PO1003,sup3,2026-06-03,16000,INR,Created

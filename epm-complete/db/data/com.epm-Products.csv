@@ -1,0 +1,4 @@
+ID,name,description,price,currency_code,stock,minStock,rating,supplier_ID,category_ID
+prd1,Dell Laptop,Core i5 Laptop,55000,INR,10,5,4.5,sup1,cat2
+prd2,HP Laptop,Core i7 Laptop,65000,INR,3,5,4.3,sup2,cat2
+prd3,Wireless Mouse,USB Mouse,800,INR,20,10,4.2,sup3,cat3

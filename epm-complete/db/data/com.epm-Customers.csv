@@ -1,0 +1,4 @@
+ID,name,email,phone,city,country_code,creditLimit
+cus1,Yogesh,yogesh@gmail.com,8888888881,Bangalore,IN,100000
+cus2,Raja,raja@gmail.com,8888888882,Delhi,IN,150000
+cus3,Aman,aman@gmail.com,8888888883,Mumbai,IN,200000

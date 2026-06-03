@@ -1,0 +1,75 @@
+### Get Products
+GET http://localhost:4004/admin/Products
+
+###
+
+### Get Suppliers
+GET http://localhost:4004/admin/Suppliers
+
+###
+
+### Get Customers
+GET http://localhost:4004/admin/Customers
+
+###
+
+### Get Sales Orders
+GET http://localhost:4004/sales/SalesOrders
+
+###
+
+### Expand Customer
+GET http://localhost:4004/sales/SalesOrders?$expand=customer
+
+###
+
+### Expand Product in Items
+GET http://localhost:4004/admin/SalesOrderItems?$expand=product
+
+###
+
+### Filter Products
+GET http://localhost:4004/admin/Products?$filter=price gt 1000
+
+###
+
+### Order By Price
+GET http://localhost:4004/admin/Products?$orderby=price desc
+
+###
+
+### Product Catalog Report
+GET http://localhost:4004/reports/ProductCatalog
+
+###
+
+### Low Stock Alert
+GET http://localhost:4004/reports/LowStockAlert
+
+###
+
+### Order Report
+GET http://localhost:4004/reports/OrderReport
+
+###
+
+### Deep Insert Sales Order
+POST http://localhost:4004/sales/SalesOrders
+Content-Type: application/json
+
+{
+  "orderNumber": "SO2001",
+  "customer_ID": "cus1",
+  "orderDate": "2026-06-05",
+  "totalAmount": 1600,
+  "currency_code": "INR",
+  "status": "Created",
+  "items": [
+    {
+      "product_ID": "prd3",
+      "quantity": 2,
+      "unitPrice": 800,
+      "netAmount": 1600
+    }
+  ]
+}

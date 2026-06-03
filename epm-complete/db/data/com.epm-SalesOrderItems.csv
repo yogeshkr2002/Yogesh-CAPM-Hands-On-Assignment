@@ -1,0 +1,4 @@
+ID,order_ID,product_ID,quantity,unitPrice,netAmount
+soi1,so1,prd1,1,55000,55000
+soi2,so2,prd2,1,65000,65000
+soi3,so3,prd3,2,800,1600
