@@ -1,5 +1,16 @@
+### ============================================================
+### BASIC
+### ============================================================
+
 ### All Books
 GET http://localhost:4004/odata/v4/catalog/Books
+
+### All Authors
+GET http://localhost:4004/odata/v4/catalog/Authors
+
+### ============================================================
+### FILTER - COMPARISON OPERATORS
+### ============================================================
 
 ### String comparison
 GET http://localhost:4004/odata/v4/catalog/Books?$filter=genre eq 'Fantasy'
@@ -40,6 +51,10 @@ GET http://localhost:4004/odata/v4/catalog/Books?$filter=email eq null
 ###
 GET http://localhost:4004/odata/v4/catalog/Books?$filter=phone ne null
 
+### ============================================================
+### FILTER - LOGICAL OPERATORS
+### ============================================================
+
 ### Range query
 GET http://localhost:4004/odata/v4/catalog/Books?$filter=price ge 10 and price le 20
 
@@ -58,6 +73,32 @@ GET http://localhost:4004/odata/v4/catalog/Books?$filter=rating ge 4.5 and price
 ### Parentheses
 GET http://localhost:4004/odata/v4/catalog/Books?$filter=(genre eq 'Fantasy' or genre eq 'Mystery') and price lt 15
 
+### ============================================================
+### FILTER - STRING FUNCTIONS
+### ============================================================
+
+### Contains
+GET http://localhost:4004/odata/v4/catalog/Books?$filter=contains(title,'Harry')
+
+### Contains Lord
+GET http://localhost:4004/odata/v4/catalog/Books?$filter=contains(title,'Lord')
+
+### Starts with H
+GET http://localhost:4004/odata/v4/catalog/Books?$filter=startswith(title,'H')
+
+### Ends with .com
+GET http://localhost:4004/odata/v4/catalog/Books?$filter=endswith(email,'.com')
+
+### Case insensitive search
+GET http://localhost:4004/odata/v4/catalog/Books?$filter=contains(tolower(title),'harry')
+
+### ISBN starts with 978
+GET http://localhost:4004/odata/v4/catalog/Books?$filter=startswith(isbn,'978')
+
+### ============================================================
+### FILTER - DATE FUNCTIONS
+### ============================================================
+
 ### Orders placed in 2026
 GET http://localhost:4004/odata/v4/catalog/Books?$filter=year(orderDate) eq 2026
 
@@ -70,16 +111,74 @@ GET http://localhost:4004/odata/v4/catalog/Books?$filter=year(publishDate) gt 20
 ### Orders from June 2026
 GET http://localhost:4004/odata/v4/catalog/Books?$filter=year(orderDate) eq 2026 and month(orderDate) eq 6
 
-### $select association (returns author_ID)
+### ============================================================
+### FILTER - ARITHMETIC OPERATORS
+### ============================================================
+
+### Stock below minimum
+GET http://localhost:4004/odata/v4/catalog/Books?$filter=stock sub minStock lt 0
+
+### Total amount greater than 50
+GET http://localhost:4004/odata/v4/catalog/Books?$filter=quantity mul unitPrice gt 50
+
+### Discount greater than 3
+GET http://localhost:4004/odata/v4/catalog/Books?$filter=price sub discountedPrice gt 3
+
+### ============================================================
+### $SELECT
+### ============================================================
+
+### Only title
+GET http://localhost:4004/odata/v4/catalog/Books?$select=title
+
+### Title and price
+GET http://localhost:4004/odata/v4/catalog/Books?$select=title,price
+
+### Title, price and rating
+GET http://localhost:4004/odata/v4/catalog/Books?$select=title,price,rating
+
+### Title and author FK
 GET http://localhost:4004/odata/v4/catalog/Books?$select=title,author
 
-### $expand author details
+### ============================================================
+### $EXPAND
+### ============================================================
+
+### Expand full author
+GET http://localhost:4004/odata/v4/catalog/Books?$expand=author
+
+### Expand author name
 GET http://localhost:4004/odata/v4/catalog/Books?$select=title&$expand=author($select=name)
 
-### Filter using association
+### Expand author name and country
+GET http://localhost:4004/odata/v4/catalog/Books?$expand=author($select=name,country)
+
+### Authors with books
+GET http://localhost:4004/odata/v4/catalog/Authors?$expand=books
+
+### Authors with book titles only
+GET http://localhost:4004/odata/v4/catalog/Authors?$expand=books($select=title)
+
+### Authors with top 2 expensive books
+GET http://localhost:4004/odata/v4/catalog/Authors?$expand=books($orderby=price desc;$top=2)
+
+### ============================================================
+### ASSOCIATION FILTERING
+### ============================================================
+
+### Books by Rowling
 GET http://localhost:4004/odata/v4/catalog/Books?$filter=author/name eq 'J.K. Rowling'
 
-###=============================================
+### Books by Tolkien
+GET http://localhost:4004/odata/v4/catalog/Books?$filter=author/name eq 'J.R.R. Tolkien'
+
+### Books by USA authors
+GET http://localhost:4004/odata/v4/catalog/Books?$filter=author/country eq 'USA'
+
+### ============================================================
+### $ORDERBY
+### ============================================================
+
 ### Cheapest books first
 GET http://localhost:4004/odata/v4/catalog/Books?$orderby=price
 
@@ -98,12 +197,12 @@ GET http://localhost:4004/odata/v4/catalog/Books?$orderby=genre,title
 ### Newest orders then highest price
 GET http://localhost:4004/odata/v4/catalog/Books?$orderby=orderDate desc,price desc
 
-### Genre A-Z, then price high-low
+### Genre A-Z then price high-low
 GET http://localhost:4004/odata/v4/catalog/Books?$orderby=genre asc,price desc
 
-##################################################
-# $top
-##################################################
+### ============================================================
+### $TOP
+### ============================================================
 
 ### First 3 books
 GET http://localhost:4004/odata/v4/catalog/Books?$top=3
@@ -114,9 +213,12 @@ GET http://localhost:4004/odata/v4/catalog/Books?$top=5
 ### Top 3 most expensive books
 GET http://localhost:4004/odata/v4/catalog/Books?$orderby=price desc&$top=3
 
-##################################################
-# $skip
-##################################################
+### Top 3 highest rated books
+GET http://localhost:4004/odata/v4/catalog/Books?$orderby=rating desc&$top=3
+
+### ============================================================
+### $SKIP
+### ============================================================
 
 ### Skip first 2 books
 GET http://localhost:4004/odata/v4/catalog/Books?$skip=2
@@ -124,25 +226,69 @@ GET http://localhost:4004/odata/v4/catalog/Books?$skip=2
 ### Skip first 5 books
 GET http://localhost:4004/odata/v4/catalog/Books?$skip=5
 
-##################################################
-# $top + $skip (Pagination)
-##################################################
+### ============================================================
+### PAGINATION ($TOP + $SKIP)
+### ============================================================
 
-### Page 1 (3 records per page)
+### Page 1
 GET http://localhost:4004/odata/v4/catalog/Books?$orderby=title&$top=3&$skip=0
 
-### Page 2 (3 records per page)
+### Page 2
 GET http://localhost:4004/odata/v4/catalog/Books?$orderby=title&$top=3&$skip=3
 
-### Page 3 (3 records per page)
+### Page 3
 GET http://localhost:4004/odata/v4/catalog/Books?$orderby=title&$top=3&$skip=6
-
-##################################################
-# Pagination with sorting
-##################################################
 
 ### Cheapest 4 books
 GET http://localhost:4004/odata/v4/catalog/Books?$orderby=price&$top=4
 
 ### Next 4 cheapest books
 GET http://localhost:4004/odata/v4/catalog/Books?$orderby=price&$top=4&$skip=4
+
+### ============================================================
+### $COUNT
+### ============================================================
+
+### Count all books
+GET http://localhost:4004/odata/v4/catalog/Books/$count
+
+### Count with results
+GET http://localhost:4004/odata/v4/catalog/Books?$count=true
+
+### Count fantasy books
+GET http://localhost:4004/odata/v4/catalog/Books/$count?$filter=genre eq 'Fantasy'
+
+### Count with pagination
+GET http://localhost:4004/odata/v4/catalog/Books?$orderby=title&$top=3&$skip=3&$count=true
+
+### ============================================================
+### $SEARCH
+### ============================================================
+
+### Search Harry
+GET http://localhost:4004/odata/v4/catalog/Books?$search=Harry
+
+### Search Design
+GET http://localhost:4004/odata/v4/catalog/Books?$search=Design
+
+### ============================================================
+### COMBINED REAL-WORLD QUERIES
+### ============================================================
+
+### Top 3 cheapest fantasy books
+GET http://localhost:4004/odata/v4/catalog/Books?$filter=genre eq 'Fantasy'&$orderby=price&$top=3&$select=title,price
+
+### Genre then price desc with count
+GET http://localhost:4004/odata/v4/catalog/Books?$orderby=genre,price desc&$top=2&$skip=0&$count=true
+
+### Books containing 'the', rating >= 4
+GET http://localhost:4004/odata/v4/catalog/Books?$filter=contains(tolower(title),'the') and rating ge 4.0&$orderby=rating desc&$select=title,rating
+
+### Active fantasy books under $20
+GET http://localhost:4004/odata/v4/catalog/Books?$filter=isActive eq true and genre eq 'Fantasy' and price lt 20&$orderby=price
+
+### Top 5 books with author details
+GET http://localhost:4004/odata/v4/catalog/Books?$top=5&$expand=author($select=name,country)
+
+### Most expensive tech books
+GET http://localhost:4004/odata/v4/catalog/Books?$filter=genre eq 'Tech'&$orderby=price desc&$select=title,price,rating
