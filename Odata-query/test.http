@@ -1,0 +1,71 @@
+### All Books
+GET http://localhost:4004/odata/v4/catalog/Books
+
+### String comparison
+GET http://localhost:4004/odata/v4/catalog/Books?$filter=genre eq 'Fantasy'
+
+###
+GET http://localhost:4004/odata/v4/catalog/Books?$filter=status ne 'Cancelled'
+
+###
+GET http://localhost:4004/odata/v4/catalog/Books?$filter=country eq 'India'
+
+### Number comparison
+GET http://localhost:4004/odata/v4/catalog/Books?$filter=price gt 10
+
+###
+GET http://localhost:4004/odata/v4/catalog/Books?$filter=stock lt 50
+
+###
+GET http://localhost:4004/odata/v4/catalog/Books?$filter=rating ge 4.0
+
+### Boolean comparison
+GET http://localhost:4004/odata/v4/catalog/Books?$filter=isActive eq true
+
+###
+GET http://localhost:4004/odata/v4/catalog/Books?$filter=isAvailable eq false
+
+### Date comparison
+GET http://localhost:4004/odata/v4/catalog/Books?$filter=publishDate gt 2020-01-01
+
+###
+GET http://localhost:4004/odata/v4/catalog/Books?$filter=orderDate le 2026-06-01
+
+### UUID comparison
+GET http://localhost:4004/odata/v4/catalog/Books?$filter=ID eq 3f4a2b1c-d5e6-7890-abcd-ef1234567890
+
+### Null checks
+GET http://localhost:4004/odata/v4/catalog/Books?$filter=email eq null
+
+###
+GET http://localhost:4004/odata/v4/catalog/Books?$filter=phone ne null
+
+### Range query
+GET http://localhost:4004/odata/v4/catalog/Books?$filter=price ge 10 and price le 20
+
+### OR
+GET http://localhost:4004/odata/v4/catalog/Books?$filter=genre eq 'Fantasy' or genre eq 'Mystery'
+
+### AND
+GET http://localhost:4004/odata/v4/catalog/Books?$filter=isActive eq true and stock lt 10
+
+### Multiple conditions
+GET http://localhost:4004/odata/v4/catalog/Books?$filter=orderDate ge 2026-01-01 and status ne 'Cancelled'
+
+###
+GET http://localhost:4004/odata/v4/catalog/Books?$filter=rating ge 4.5 and price lt 15
+
+### Parentheses
+GET http://localhost:4004/odata/v4/catalog/Books?$filter=(genre eq 'Fantasy' or genre eq 'Mystery') and price lt 15
+
+### Orders placed in 2026
+GET http://localhost:4004/odata/v4/catalog/Books?$filter=year(orderDate) eq 2026
+
+### Employees hired in June
+GET http://localhost:4004/odata/v4/catalog/Books?$filter=month(hireDate) eq 6
+
+### Books published after 2000
+GET http://localhost:4004/odata/v4/catalog/Books?$filter=year(publishDate) gt 2000
+
+### Orders from June 2026
+GET http://localhost:4004/odata/v4/catalog/Books?$filter=year(orderDate) eq 2026 and month(orderDate) eq 6
