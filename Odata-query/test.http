@@ -69,3 +69,12 @@ GET http://localhost:4004/odata/v4/catalog/Books?$filter=year(publishDate) gt 20
 
 ### Orders from June 2026
 GET http://localhost:4004/odata/v4/catalog/Books?$filter=year(orderDate) eq 2026 and month(orderDate) eq 6
+
+### $select association (returns author_ID)
+GET http://localhost:4004/odata/v4/catalog/Books?$select=title,author
+
+### $expand author details
+GET http://localhost:4004/odata/v4/catalog/Books?$select=title&$expand=author($select=name)
+
+### Filter using association
+GET http://localhost:4004/odata/v4/catalog/Books?$filter=author/name eq 'J.K. Rowling'

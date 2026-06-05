@@ -1,5 +1,11 @@
 namespace demo;
 
+entity Authors {
+  key ID   : UUID;
+      name : String(100);
+      country : String(50);
+}
+
 entity Books {
   key ID          : UUID;
       title       : String(100);
@@ -16,4 +22,6 @@ entity Books {
       hireDate    : Date;
       email       : String(100);
       phone       : String(30);
+
+      author      : Association to Authors;
 }
