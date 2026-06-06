@@ -2,8 +2,10 @@ namespace demo;
 
 entity Authors {
   key ID : UUID;
-      name : String(100);
+
+      name    : String(100);
       country : String(50);
+      email   : String(100);
 
       books : Association to many Books
               on books.author = $self;

@@ -1,0 +1,105 @@
+@base = http://localhost:4004/odata/v4/admin
+
+### Read all books
+GET {{base}}/Books
+
+### Read all authors
+GET {{base}}/Authors
+
+### Read single book
+GET {{base}}/Books(3f4a2b1c-d5e6-7890-abcd-ef1234567890)
+
+### Non-existing book
+GET {{base}}/Books(00000000-0000-0000-0000-000000000000)
+
+### Deep read author of a book
+GET {{base}}/Books(3f4a2b1c-d5e6-7890-abcd-ef1234567890)/author
+
+### Deep read books of an author
+GET {{base}}/Authors(a1000002-2222-2222-2222-222222222222)/books
+
+### Expand author
+GET {{base}}/Books?$expand=author&$select=title,price
+
+### ========================================================
+
+### Exercise 3.1 PATCH price
+PATCH http://localhost:4004/odata/v4/admin/Books(3f4a2b1c-d5e6-7890-abcd-ef1234567890)
+Content-Type: application/json
+
+{
+  "price": 16.99
+}
+
+### Verify
+GET http://localhost:4004/odata/v4/admin/Books(3f4a2b1c-d5e6-7890-abcd-ef1234567890)
+
+### Exercise 3.2 PATCH stock and rating
+PATCH http://localhost:4004/odata/v4/admin/Books(3f4a2b1c-d5e6-7890-abcd-ef1234567890)
+Content-Type: application/json
+
+{
+  "stock": 120,
+  "rating": 4.3
+}
+
+### Verify
+GET http://localhost:4004/odata/v4/admin/Books(3f4a2b1c-d5e6-7890-abcd-ef1234567890)
+
+### Exercise 3.3 PUT
+PUT http://localhost:4004/odata/v4/admin/Books(3f4a2b1c-d5e6-7890-abcd-ef1234567890)
+Content-Type: application/json
+
+{
+  "title": "Harry Potter Special Edition",
+  "genre": "Fantasy",
+  "price": 20.99,
+  "stock": 150,
+  "rating": 4.9,
+  "isbn": "9780747532699",
+  "author_ID": "a1000001-1111-1111-1111-111111111111"
+}
+
+### Verify
+GET http://localhost:4004/odata/v4/admin/Books(3f4a2b1c-d5e6-7890-abcd-ef1234567890)
+
+###=========================================================
+
+### Delete a Book
+DELETE http://localhost:4004/odata/v4/admin/Books(3f4a2b1c-d5e6-7890-abcd-ef1234567890)
+
+### Verify deletion
+GET http://localhost:4004/odata/v4/admin/Books(3f4a2b1c-d5e6-7890-abcd-ef1234567890)
+
+### Delete again
+DELETE http://localhost:4004/odata/v4/admin/Books(3f4a2b1c-d5e6-7890-abcd-ef1234567890)
+
+### Try delete from readonly service
+DELETE http://localhost:4004/odata/v4/catalog/Books(11111111-1111-1111-1111-111111111111)
+
+###=================================================================================================
+
+@catalog = http://localhost:4004/odata/v4/catalog
+
+### 5.1 READ works
+GET {{catalog}}/Books
+
+### 5.2 CREATE blocked
+POST {{catalog}}/Books
+Content-Type: application/json
+
+{
+  "title": "Test",
+  "price": 1.00
+}
+
+### 5.3 UPDATE blocked
+PATCH {{catalog}}/Books(11111111-1111-1111-1111-111111111111)
+Content-Type: application/json
+
+{
+  "price": 999.99
+}
+
+### 5.4 DELETE blocked
+DELETE {{catalog}}/Books(11111111-1111-1111-1111-111111111111)
