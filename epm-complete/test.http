@@ -181,3 +181,13 @@ POST http://localhost:4004/reports/PingHealth
 Content-Type: application/json
 
 {}
+
+### Call unbound action: GenerateReport
+POST http://localhost:4004/analytics/GenerateReport
+Content-Type: application/json
+
+{
+  "reportType": "Sales",
+  "startDate": "2026-01-01",
+  "endDate": "2026-05-31"
+}
