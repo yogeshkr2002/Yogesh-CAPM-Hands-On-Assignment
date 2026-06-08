@@ -1,58 +1,3 @@
-### Get Products
-GET http://localhost:4004/admin/Products
-
-###
-
-### Get Suppliers
-GET http://localhost:4004/admin/Suppliers
-
-###
-
-### Get Customers
-GET http://localhost:4004/admin/Customers
-
-###
-
-### Get Sales Orders
-GET http://localhost:4004/sales/SalesOrders
-
-###
-
-### Expand Customer
-GET http://localhost:4004/sales/SalesOrders?$expand=customer
-
-###
-
-### Expand Product in Items
-GET http://localhost:4004/admin/SalesOrderItems?$expand=product
-
-###
-
-### Filter Products
-GET http://localhost:4004/admin/Products?$filter=price gt 1000
-
-###
-
-### Order By Price
-GET http://localhost:4004/admin/Products?$orderby=price desc
-
-###
-
-### Product Catalog Report
-GET http://localhost:4004/reports/ProductCatalog
-
-###
-
-### Low Stock Alert
-GET http://localhost:4004/reports/LowStockAlert
-
-###
-
-### Order Report
-GET http://localhost:4004/reports/OrderReport
-
-###
-
 ### Deep Insert Sales Order
 POST http://localhost:4004/sales/SalesOrders
 Content-Type: application/json
@@ -190,4 +135,31 @@ Content-Type: application/json
   "reportType": "Sales",
   "startDate": "2026-01-01",
   "endDate": "2026-05-31"
+}
+
+### ===================================================================
+
+
+GET http://localhost:4004/sales/SalesOrders
+### Confirm a specific order
+POST http://localhost:4004/sales/SalesOrders(d59cd470-f8ad-4c4a-8625-523653ed97ed)/SalesService.confirm
+Content-Type: application/json
+
+{}
+
+### Cancel a specific order (with reason parameter)
+POST http://localhost:4004/sales/SalesOrders(d59cd470-f8ad-4c4a-8625-523653ed97ed)/SalesService.cancel
+Content-Type: application/json
+
+{
+  "reason": "Customer changed their mind"
+}
+
+### Ship an order (with tracking info)
+POST http://localhost:4004/sales/SalesOrders(d59cd470-f8ad-4c4a-8625-523653ed97ed)/SalesService.ship
+Content-Type: application/json
+
+{
+  "trackingNumber": "TRK-2026-ABC123",
+  "carrier": "FedEx"
 }
