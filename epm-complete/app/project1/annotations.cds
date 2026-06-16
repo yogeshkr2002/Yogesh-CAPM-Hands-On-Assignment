@@ -1,14 +1,14 @@
 using SalesService as service from '../../srv/sales-service';
 annotate service.Products with @(
-UI.HeaderInfo : {
-    TypeName : 'Product',
-    TypeNamePlural : 'Products',
-    Title : {
+    UI.HeaderInfo : {
+        TypeName : 'Product',
+        TypeNamePlural : 'Products',
+        Title : {
         Value : name
-    },
-    Description : {
-        Value : description
-    }
+        },
+        Description : {
+            Value : description
+        }
 },
     UI.FieldGroup #GeneratedGroup : {
         $Type : 'UI.FieldGroupType',
@@ -59,9 +59,9 @@ UI.HeaderInfo : {
         },
     ],
     UI.SelectionFields : [
-    name,
-    stock
-],
+        name,
+        stock,
+    ],
     UI.LineItem : [
         {
             $Type : 'UI.DataField',
@@ -87,6 +87,16 @@ UI.HeaderInfo : {
             $Type : 'UI.DataField',
             Label : 'rating',
             Value : rating,
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Supplier ID',
+            Value : supplier_ID,
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Category ID',
+            Value : category_ID,
         },
     ],
     
