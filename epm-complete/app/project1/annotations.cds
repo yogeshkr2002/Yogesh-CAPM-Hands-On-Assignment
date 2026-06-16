@@ -98,6 +98,16 @@ annotate service.Products with @(
             Label : 'Category ID',
             Value : category_ID,
         },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Created By',
+            Value : createdBy,
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Modified By',
+            Value : modifiedBy,
+        },
     ],
     
 );
