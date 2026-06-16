@@ -109,6 +109,10 @@ annotate service.Products with @(
             Value : modifiedBy,
         },
     ],
+    UI.DataPoint #ProductRating : {
+        Title : 'Product Rating',
+        Value : rating
+    }
     
 );
 
