@@ -1,4 +1,6 @@
-ID,poNumber,supplier_ID,orderDate,totalAmount,currency_code,status
-po1,PO1001,sup1,2026-06-01,110000,INR,Created
-po2,PO1002,sup2,2026-06-02,130000,INR,Approved
-po3,PO1003,sup3,2026-06-03,16000,INR,Created
+ID,poNumber,supplier_ID,orderDate,totalAmount,currency_code,status,createdAt,createdBy,modifiedAt,modifiedBy
+58007299-dda2-4202-9b7d-771a8da0cc96,poNumber-5800729,10701876-2eff-4b07-b44a-ed3390bc1d24,2013-02-16,9782439164.28,534,status-5800729,2001-01-06T00:00:00.000Z,createdBy.3gbvd@example.org,2017-01-01T00:00:00.000Z,modifiedBy.3gbvd@example.com
+58007306-e4c4-4745-ad48-db742c66cf2d,poNumber-5800730,10701876-2eff-4b07-b44a-ed3390bc1d24,2000-09-28,458495916.13,534,status-5800730,2005-04-04T00:00:00.000Z,createdBy.3gbve@example.net,2021-03-11T00:00:00.000Z,modifiedBy.3gbve@example.org
+5800731f-0529-4369-a738-853f001c0085,poNumber-5800731,10701876-2eff-4b07-b44a-ed3390bc1d24,2000-05-28,1238026808.47,534,status-5800731,2003-04-02T00:00:00.000Z,createdBy.3gbvf@example.com,2000-09-06T00:00:00.000Z,modifiedBy.3gbvf@example.com
+5800732b-33b5-4855-98f1-5754253ca861,poNumber-5800732,10701876-2eff-4b07-b44a-ed3390bc1d24,2000-04-08,6562077308.7,534,status-5800732,2014-01-02T00:00:00.000Z,createdBy.3gbvg@example.org,2009-11-12T00:00:00.000Z,modifiedBy.3gbvg@example.net
+58007336-d6aa-4815-aeae-c63dfa3d310e,poNumber-5800733,10701876-2eff-4b07-b44a-ed3390bc1d24,2001-12-04,3570479864.52,534,status-5800733,2019-12-22T00:00:00.000Z,createdBy.3gbvh@example.org,2006-06-05T00:00:00.000Z,modifiedBy.3gbvh@example.com

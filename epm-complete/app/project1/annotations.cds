@@ -53,6 +53,12 @@ annotate service.Products with @(
     UI.Facets : [
         {
             $Type : 'UI.ReferenceFacet',
+            ID : 'RatingFacet',
+            Label : 'Product Rating',
+            Target : '@UI.DataPoint#ProductRating',
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
             ID : 'GeneratedFacet1',
             Label : 'General Information',
             Target : '@UI.FieldGroup#GeneratedGroup',
@@ -90,13 +96,13 @@ annotate service.Products with @(
         },
         {
             $Type : 'UI.DataField',
-            Label : 'Supplier ID',
-            Value : supplier_ID,
+            Label : 'Supplier',
+            Value : supplier.name,
         },
         {
             $Type : 'UI.DataField',
-            Label : 'Category ID',
-            Value : category_ID,
+            Label : 'Category',
+            Value : category.name,
         },
         {
             $Type : 'UI.DataField',
@@ -112,7 +118,12 @@ annotate service.Products with @(
     UI.DataPoint #ProductRating : {
         Title : 'Product Rating',
         Value : rating
-    }
+    },
+    UI.DataPoint #StockLevel : {
+        Title : 'Stock Level',
+        Value : stock,
+        Criticality : #Positive
+    },
     
 );
 

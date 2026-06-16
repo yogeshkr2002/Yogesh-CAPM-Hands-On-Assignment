@@ -33,4 +33,8 @@ actions {
 };
 
     entity SalesOrderItems as projection on db.SalesOrderItems;
+
+    entity Suppliers as projection on db.Suppliers;
+
+    entity Categories as projection on db.Categories;
 }

@@ -1,4 +1,6 @@
 ID,name,contact,email,phone,city,country_code,isActive
-sup1,ABC Traders,Raj,abc@gmail.com,9999999991,Bangalore,IN,true
-sup2,Tech Supply,Amit,tech@gmail.com,9999999992,Delhi,IN,true
-sup3,Global Parts,John,global@gmail.com,9999999993,Mumbai,IN,true
+10701876-2eff-4b07-b44a-ed3390bc1d24,name-10701876,contact-10701876,email-10701876,phone-10701876,city-10701876,926,true
+15533053-202b-45fd-985e-18898dabc72e,name-15533053,contact-15533053,email-15533053,phone-15533053,city-15533053,926,false
+15533054-3eb8-49ba-b154-37732807c5fd,name-15533054,contact-15533054,email-15533054,phone-15533054,city-15533054,926,true
+15533055-72a5-4bc9-9bfa-fbf54db938be,name-15533055,contact-15533055,email-15533055,phone-15533055,city-15533055,926,false
+15533056-b4ff-4f98-a4fa-ce8e1d36944b,name-15533056,contact-15533056,email-15533056,phone-15533056,city-15533056,926,true

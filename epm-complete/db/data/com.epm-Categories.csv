@@ -1,4 +1,6 @@
 ID,name,description,parentCategory_ID
-cat1,Electronics,Electronic Products,
-cat2,Laptops,Laptop Category,cat1
-cat3,Accessories,Accessories Category,cat1
+22254691-41d8-41ca-9c2d-6149f2604781,name-22254691,description-22254691,22254691-41d8-41ca-9c2d-6149f2604781
+28418622-17c9-43d1-a3ea-753ca6d507e4,name-28418622,description-28418622,28418622-17c9-43d1-a3ea-753ca6d507e4
+28418623-aa3c-445e-bf1a-889df5bec1cf,name-28418623,description-28418623,28418623-aa3c-445e-bf1a-889df5bec1cf
+28418624-d982-4d2a-b176-e786fb752137,name-28418624,description-28418624,28418624-d982-4d2a-b176-e786fb752137
+28418625-8e76-4e26-bdaf-548046610f12,name-28418625,description-28418625,28418625-8e76-4e26-bdaf-548046610f12

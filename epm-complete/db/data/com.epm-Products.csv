@@ -1,4 +1,6 @@
-ID,name,description,price,currency_code,stock,minStock,rating,supplier_ID,category_ID
-prd1,Dell Laptop,Core i5 Laptop,55000,INR,10,5,4.5,sup1,cat2
-prd2,HP Laptop,Core i7 Laptop,65000,INR,3,5,4.3,sup2,cat2
-prd3,Wireless Mouse,USB Mouse,800,INR,20,10,4.2,sup3,cat3
+ID,name,description,price,currency_code,stock,minStock,rating,supplier_ID,category_ID,createdAt,createdBy,modifiedAt,modifiedBy
+12441916-607c-4528-a0fe-9c3b05c5c868,name-12441916,description-12441916,75886967.99,534,39,86,3.33,10701876-2eff-4b07-b44a-ed3390bc1d24,22254691-41d8-41ca-9c2d-6149f2604781,2006-02-10T00:00:00.000Z,createdBy.7eo8s@example.net,2014-10-27T00:00:00.000Z,modifiedBy.7eo8s@example.net
+83786700-6b7f-4792-9c9a-b11579c30a51,name-8378670,description-8378670,62262514.51,534,70,26,0.59,15533056-b4ff-4f98-a4fa-ce8e1d36944b,28418625-8e76-4e26-bdaf-548046610f12,2001-08-26T00:00:00.000Z,createdBy.4zl0u@example.net,2016-11-13T00:00:00.000Z,modifiedBy.4zl0u@example.com
+83786710-a614-4cae-98c9-1d2f84f562f0,name-8378671,description-8378671,74746943.17,534,29,86,8.81,15533056-b4ff-4f98-a4fa-ce8e1d36944b,28418625-8e76-4e26-bdaf-548046610f12,2010-10-10T00:00:00.000Z,createdBy.4zl0v@example.org,2019-07-31T00:00:00.000Z,modifiedBy.4zl0v@example.net
+8378672f-cda6-47d5-9add-76b6ea92f4a7,name-8378672,description-8378672,17518343.04,534,100,16,0.8,15533056-b4ff-4f98-a4fa-ce8e1d36944b,28418625-8e76-4e26-bdaf-548046610f12,2003-07-19T00:00:00.000Z,createdBy.4zl0w@example.net,2015-02-07T00:00:00.000Z,modifiedBy.4zl0w@example.net
+8378673c-9693-4287-8822-e23403d0df53,name-8378673,description-8378673,64397374.57,534,7,14,6.36,15533056-b4ff-4f98-a4fa-ce8e1d36944b,28418625-8e76-4e26-bdaf-548046610f12,2019-01-19T00:00:00.000Z,createdBy.4zl0x@example.com,2005-05-28T00:00:00.000Z,modifiedBy.4zl0x@example.org

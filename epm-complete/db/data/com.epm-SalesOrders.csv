@@ -1,4 +1,6 @@
-ID,orderNumber,customer_ID,orderDate,totalAmount,currency_code,status
-so1,SO1001,cus1,2026-06-01,55800,INR,Created
-so2,SO1002,cus2,2026-06-02,65000,INR,Created
-so3,SO1003,cus3,2026-06-03,1600,INR,Delivered
+ID,orderNumber,customer_ID,orderDate,totalAmount,currency_code,status,createdAt,createdBy,modifiedAt,modifiedBy
+38651319-0165-4a65-a3e6-94c4e1ccb7f3,orderNumber-3865131,15552357-b59d-4269-9b90-eb19aa808844,2012-11-21,4263941180.33,534,status-3865131,2022-06-06T00:00:00.000Z,createdBy.2aucr@example.net,2005-06-23T00:00:00.000Z,modifiedBy.2aucr@example.com
+38651323-cac6-44f7-82c3-8cec898b2a4e,orderNumber-3865132,15552357-b59d-4269-9b90-eb19aa808844,2010-04-27,5704516035.45,534,status-3865132,2002-05-31T00:00:00.000Z,createdBy.2aucs@example.net,2007-06-12T00:00:00.000Z,modifiedBy.2aucs@example.net
+3865133a-f1da-43ff-b62c-19d29259e117,orderNumber-3865133,15552357-b59d-4269-9b90-eb19aa808844,2022-02-18,963226090.17,534,status-3865133,2009-12-20T00:00:00.000Z,createdBy.2auct@example.org,2017-10-15T00:00:00.000Z,modifiedBy.2auct@example.com
+3865134b-2957-47c8-b2cb-f7d7bfd328f5,orderNumber-3865134,15552357-b59d-4269-9b90-eb19aa808844,2012-07-11,1421514929.45,534,status-3865134,2017-04-21T00:00:00.000Z,createdBy.2aucu@example.com,2023-05-10T00:00:00.000Z,modifiedBy.2aucu@example.com
+38651352-2bc0-4649-b5f3-7767a429a6f9,orderNumber-3865135,15552357-b59d-4269-9b90-eb19aa808844,2012-06-01,9811260990.26,534,status-3865135,2007-12-18T00:00:00.000Z,createdBy.2aucv@example.org,2002-01-04T00:00:00.000Z,modifiedBy.2aucv@example.com

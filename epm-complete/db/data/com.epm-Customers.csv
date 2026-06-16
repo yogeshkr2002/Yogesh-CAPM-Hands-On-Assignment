@@ -1,4 +1,6 @@
-ID,name,email,phone,city,country_code,creditLimit
-cus1,Yogesh,yogesh@gmail.com,8888888881,Bangalore,IN,100000
-cus2,Raja,raja@gmail.com,8888888882,Delhi,IN,150000
-cus3,Aman,aman@gmail.com,8888888883,Mumbai,IN,200000
+ID,name,email,phone,city,country_code,creditLimit,createdAt,createdBy,modifiedAt,modifiedBy
+15552357-b59d-4269-9b90-eb19aa808844,name-15552357,email-15552357,phone-15552357,city-15552357,926,6129600751.24,2020-12-08T00:00:00.000Z,createdBy.99c9x@example.com,2015-08-27T00:00:00.000Z,modifiedBy.99c9x@example.net
+23635127-3e95-41c6-897a-da96a0a96376,name-23635127,email-23635127,phone-23635127,city-23635127,926,4951121257.91,2001-06-15T00:00:00.000Z,createdBy.e2kzb@example.net,2003-07-02T00:00:00.000Z,modifiedBy.e2kzb@example.org
+23635128-ce65-4229-a840-24971b3a2bc7,name-23635128,email-23635128,phone-23635128,city-23635128,926,817497793.98,2017-08-17T00:00:00.000Z,createdBy.e2kzc@example.net,2023-01-18T00:00:00.000Z,modifiedBy.e2kzc@example.com
+23635129-d5b5-4709-9afc-78530a887ca1,name-23635129,email-23635129,phone-23635129,city-23635129,926,7289772470.12,2012-11-17T00:00:00.000Z,createdBy.e2kzd@example.org,2019-04-22T00:00:00.000Z,modifiedBy.e2kzd@example.org
+23635130-af64-477e-ae98-395b6162f692,name-23635130,email-23635130,phone-23635130,city-23635130,926,5579713561.15,2021-05-17T00:00:00.000Z,createdBy.e2kze@example.com,2008-04-16T00:00:00.000Z,modifiedBy.e2kze@example.net
