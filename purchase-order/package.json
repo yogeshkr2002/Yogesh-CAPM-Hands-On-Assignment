@@ -13,6 +13,17 @@
     "watch-project1": "cds watch --open project1/index.html?sap-ui-xx-viewCache=false --livereload false"
   },
   "private": true,
+  "cds": {
+    "requires": {
+      "db": {
+        "kind": "sqlite",
+        "model": "db",
+        "credentials": {
+          "database": "db/purchase-order.db"
+        }
+      }
+    }
+  },
   "workspaces": [
     "app/*"
   ],
