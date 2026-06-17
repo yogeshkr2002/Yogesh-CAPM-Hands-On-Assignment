@@ -1,0 +1,6 @@
+ID,poNumber,supplier_ID,orderDate,status,totalAmount,createdAt,createdBy,modifiedAt,modifiedBy
+2016019b-b22b-4e8e-8afa-aed01ee5edc0,poNumber-201601,20053342-50bc-4b17-b694-890a955c135a,2008-12-13,status-201601,6589567294020.62,2019-11-04T00:00:00.000Z,createdBy.4bk1@example.org,2009-05-18T00:00:00.000Z,modifiedBy.4bk1@example.com
+201602fe-ab7b-445e-bc8a-6bf2d7f7e96c,poNumber-201602,20053342-50bc-4b17-b694-890a955c135a,2005-05-08,status-201602,2903180153609.7,2009-11-01T00:00:00.000Z,createdBy.4bk2@example.com,2014-04-13T00:00:00.000Z,modifiedBy.4bk2@example.org
+201603f9-ed65-441c-addb-ed97b76e0634,poNumber-201603,20053342-50bc-4b17-b694-890a955c135a,2015-04-08,status-201603,5200149032722.9,2008-09-25T00:00:00.000Z,createdBy.4bk3@example.net,2012-01-03T00:00:00.000Z,modifiedBy.4bk3@example.org
+20160420-f1ae-475a-950c-fc529321f0ce,poNumber-201604,20053342-50bc-4b17-b694-890a955c135a,2006-10-12,status-201604,3788940133005.36,2003-08-06T00:00:00.000Z,createdBy.4bk4@example.org,2003-02-12T00:00:00.000Z,modifiedBy.4bk4@example.org
+2016056f-7a2c-417f-bdfb-3f3d4ce8c14f,poNumber-201605,20053342-50bc-4b17-b694-890a955c135a,2009-04-08,status-201605,1364907294194.96,2016-08-06T00:00:00.000Z,createdBy.4bk5@example.net,2004-09-01T00:00:00.000Z,modifiedBy.4bk5@example.com

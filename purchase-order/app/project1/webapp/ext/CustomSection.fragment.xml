@@ -1,0 +1,47 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:l="sap.ui.layout">
+  <VBox id="stockVBox" class="sapUiSmallMargin">
+    <Title id="stockTitle" text="Stock Visualization" level="H3"/>
+    <l:Grid id="stockGrid" defaultSpan="L6 M6 S12">
+      <l:content>
+        <VBox id="stockInfoBox" class="sapUiSmallMarginBottom">
+          <Label id="stockLabel" text="Total Order Amount"/>
+          <ObjectNumber
+            id="stockAmount"
+            number="{totalAmount}"
+            unit="USD"
+            state="Success"
+          />
+        </VBox>
+        <VBox id="stockStatusBox" class="sapUiSmallMarginBottom">
+          <Label id="statusLabel" text="Order Status"/>
+          <ObjectStatus
+            id="stockStatus"
+            text="{status}"
+            state="{= ${status} === 'approved' ? 'Success' : ${status} === 'rejected' ? 'Error' : 'Warning'}"
+          />
+        </VBox>
+      </l:content>
+    </l:Grid>
+    <Title id="stockItemsTitle" text="Items Stock Overview" level="H4" class="sapUiSmallMarginTop"/>
+    <List id="stockItemsList" items="{items}">
+      <items>
+        <CustomListItem id="stockListItem">
+          <VBox id="stockItemVBox" class="sapUiTinyMargin">
+            <Text id="stockItemProduct" text="Product: {product/name}"/>
+            <ProgressIndicator
+              id="stockItemProgress"
+              percentValue="{= ${product/stock} > 100 ? 100 : ${product/stock}}"
+              displayValue="{= (${product/stock} > 100 ? 100 : ${product/stock}) + '%'}"
+              state="{= ${product/stock} > 20 ? 'Success' : ${product/stock} > 0 ? 'Warning' : 'Error'}"
+            />
+            <Text
+              id="stockItemReorder"
+              text="{= ${product/stock} &lt; 10 ? 'Reorder needed: Yes' : 'Reorder needed: No'}"
+              class="sapUiTinyMarginTop"
+            />
+          </VBox>
+        </CustomListItem>
+      </items>
+    </List>
+  </VBox>
+</core:FragmentDefinition>

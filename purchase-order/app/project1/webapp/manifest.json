@@ -1,0 +1,183 @@
+{
+  "_version": "1.85.0",
+  "sap.app": {
+    "id": "project1",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:lrop",
+      "version": "1.26.0",
+      "toolsId": "fde20509-5efb-4d7d-8819-6303d51d3dad"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/odata/v4/purchase-order/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "4.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.149.0",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.ui.layout": {},
+        "sap.fe.templates": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "project1.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "@i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      }
+    },
+    "resources": {
+      "css": []
+    },
+    "routing": {
+      "config": {},
+      "routes": [
+        {
+          "pattern": ":?query:",
+          "name": "PurchaseOrdersList",
+          "target": "PurchaseOrdersList"
+        },
+        {
+          "pattern": "PurchaseOrders({key}):?query:",
+          "name": "PurchaseOrdersObjectPage",
+          "target": "PurchaseOrdersObjectPage"
+        },
+        {
+          "pattern": "PurchaseOrders({key})/items({key2}):?query:",
+          "name": "POItemsObjectPage",
+          "target": "POItemsObjectPage"
+        }
+      ],
+      "targets": {
+        "PurchaseOrdersList": {
+          "type": "Component",
+          "id": "PurchaseOrdersList",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "contextPath": "/PurchaseOrders",
+              "variantManagement": "Page",
+              "navigation": {
+                "PurchaseOrders": {
+                  "detail": {
+                    "route": "PurchaseOrdersObjectPage"
+                  }
+                }
+              },
+              "controlConfiguration": {
+                "@com.sap.vocabularies.UI.v1.LineItem": {
+                  "tableSettings": {
+                    "type": "ResponsiveTable"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "PurchaseOrdersObjectPage": {
+          "type": "Component",
+          "id": "PurchaseOrdersObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "contextPath": "/PurchaseOrders",
+              "navigation": {
+                "items": {
+                  "detail": {
+                    "route": "POItemsObjectPage"
+                  }
+                }
+              },
+              "content": {
+                "body": {
+                  "sections": {
+                    "customStockSection": {
+                      "template": "project1.ext.CustomSection",
+                      "title": "Stock Visualization",
+                      "position": {
+                        "placement": "After",
+                        "anchor": "GeneralInfoSection"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "POItemsObjectPage": {
+          "type": "Component",
+          "id": "POItemsObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "contextPath": "/PurchaseOrders/items"
+            }
+          }
+        }
+      }
+    }
+  },
+  "sap.fiori": {
+    "registrationIds": [],
+    "archeType": "transactional"
+  },
+  "sap.fe": {
+    "app": {
+      "enableLazyLoading": true
+    }
+  }
+}
