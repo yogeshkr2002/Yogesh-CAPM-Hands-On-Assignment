@@ -1,0 +1,310 @@
+### ════════════════════════════════════════════════════════════
+### VARIABLES
+### ════════════════════════════════════════════════════════════
+@baseUrl = http://localhost:4004
+@poId = 2016019b-b22b-4e8e-8afa-aed01ee5edc0
+@itemId = 11658909-c827-425e-b756-912815014459
+@supplierId = 20053342-50bc-4b17-b694-890a955c135a
+@productId = 9154994a-5fc0-4c06-93a3-220603935308
+
+@viewerAuth = Basic dmlld2VyOnZpZXdlcg==
+@managerAuth = Basic bWFuYWdlcjptYW5hZ2Vy
+@adminAuth = Basic YWRtaW46YWRtaW4=
+
+
+### ════════════════════════════════════════════════════════════
+### 0. NO AUTH — should fail with 401
+### ════════════════════════════════════════════════════════════
+
+### Should FAIL 401 (no credentials at all)
+GET {{baseUrl}}/odata/v4/purchase-order/PurchaseOrders
+Authorization: {{viewerAuth}}
+
+
+### ════════════════════════════════════════════════════════════
+### 1. VIEWER — read-only across PurchaseOrders/POItems/Products
+### ════════════════════════════════════════════════════════════
+
+### Should SUCCEED 200 (Viewer can READ POs)
+GET {{baseUrl}}/odata/v4/purchase-order/PurchaseOrders
+Authorization: {{viewerAuth}}
+
+### Should SUCCEED 200 (Viewer can READ POItems)
+GET {{baseUrl}}/odata/v4/purchase-order/POItems
+Authorization: {{viewerAuth}}
+
+### Should SUCCEED 200 (Viewer can READ Products)
+GET {{baseUrl}}/odata/v4/purchase-order/Products
+Authorization: {{viewerAuth}}
+
+### Should FAIL 403 (Viewer cannot CREATE a PO)
+POST {{baseUrl}}/odata/v4/purchase-order/PurchaseOrders
+Authorization: {{viewerAuth}}
+Content-Type: application/json
+
+{
+  "poNumber": "PO-VIEWER-TEST",
+  "supplier_ID": "{{supplierId}}",
+  "orderDate": "2026-06-23",
+  "status": "Draft"
+}
+
+### Should FAIL 403 (Viewer cannot UPDATE a PO)
+PATCH {{baseUrl}}/odata/v4/purchase-order/PurchaseOrders(ID={{poId}},IsActiveEntity=true)
+Authorization: {{viewerAuth}}
+Content-Type: application/json
+
+{
+  "poNumber": "PO-VIEWER-EDIT"
+}
+
+### Should FAIL 403 (Viewer cannot DELETE a PO)
+DELETE {{baseUrl}}/odata/v4/purchase-order/PurchaseOrders(ID={{poId}},IsActiveEntity=true)
+Authorization: {{viewerAuth}}
+
+### Should FAIL 403 (Viewer cannot call submitOrder)
+POST {{baseUrl}}/odata/v4/purchase-order/PurchaseOrders(ID={{poId}},IsActiveEntity=true)/PurchaseOrderService.submitOrder
+Authorization: {{viewerAuth}}
+Content-Type: application/json
+
+{}
+
+### Should FAIL 403 (Viewer cannot call approveOrder)
+POST {{baseUrl}}/odata/v4/purchase-order/PurchaseOrders(ID={{poId}},IsActiveEntity=true)/PurchaseOrderService.approveOrder
+Authorization: {{viewerAuth}}
+Content-Type: application/json
+
+{}
+
+### Should FAIL 403 (Viewer cannot call rejectOrder)
+POST {{baseUrl}}/odata/v4/purchase-order/PurchaseOrders(ID={{poId}},IsActiveEntity=true)/PurchaseOrderService.rejectOrder
+Authorization: {{viewerAuth}}
+Content-Type: application/json
+
+{ "reason": "Not needed" }
+
+### Should FAIL 403 (Viewer cannot access Suppliers at all)
+GET {{baseUrl}}/odata/v4/purchase-order/Suppliers
+Authorization: {{viewerAuth}}
+
+### Should FAIL 403 (Viewer cannot CREATE a Product)
+POST {{baseUrl}}/odata/v4/purchase-order/Products
+Authorization: {{viewerAuth}}
+Content-Type: application/json
+
+{
+  "name": "Viewer Created Product",
+  "price": 10.00,
+  "stock": 5
+}
+
+
+### ════════════════════════════════════════════════════════════
+### 2. PURCHASE MANAGER — CRUD on PO/POItems + actions, no delete,
+###    no Suppliers, read-only Products
+### ════════════════════════════════════════════════════════════
+
+### Should SUCCEED 200 (Manager can READ POs)
+GET {{baseUrl}}/odata/v4/purchase-order/PurchaseOrders
+Authorization: {{managerAuth}}
+
+### Should SUCCEED 201 (Manager can CREATE a PO)
+POST {{baseUrl}}/odata/v4/purchase-order/PurchaseOrders
+Authorization: {{managerAuth}}
+Content-Type: application/json
+
+{
+  "poNumber": "PO-MGR-001",
+  "supplier_ID": "{{supplierId}}",
+  "orderDate": "2026-06-23",
+  "status": "Draft"
+}
+
+### Should SUCCEED 200 (Manager can UPDATE a PO)
+PATCH {{baseUrl}}/odata/v4/purchase-order/PurchaseOrders(ID={{poId}},IsActiveEntity=true)
+Authorization: {{managerAuth}}
+Content-Type: application/json
+
+{
+  "poNumber": "PO-MGR-EDITED"
+}
+
+### Should SUCCEED 201 (Manager can CREATE a POItem)
+POST {{baseUrl}}/odata/v4/purchase-order/POItems
+Authorization: {{managerAuth}}
+Content-Type: application/json
+
+{
+  "parent_ID": "{{poId}}",
+  "product_ID": "{{productId}}",
+  "quantity": 3
+}
+
+### Should FAIL 403 (Manager cannot DELETE a PO)
+DELETE {{baseUrl}}/odata/v4/purchase-order/PurchaseOrders(ID={{poId}},IsActiveEntity=true)
+Authorization: {{managerAuth}}
+
+### Should FAIL 403 (Manager cannot DELETE a POItem)
+DELETE {{baseUrl}}/odata/v4/purchase-order/POItems(ID={{itemId}},IsActiveEntity=true)
+Authorization: {{managerAuth}}
+
+### Should SUCCEED 200 (Manager CAN call submitOrder)
+POST {{baseUrl}}/odata/v4/purchase-order/PurchaseOrders(ID={{poId}},IsActiveEntity=true)/PurchaseOrderService.submitOrder
+Authorization: {{managerAuth}}
+Content-Type: application/json
+
+{}
+
+### Should SUCCEED 200 (Manager CAN call approveOrder)
+POST {{baseUrl}}/odata/v4/purchase-order/PurchaseOrders(ID={{poId}},IsActiveEntity=true)/PurchaseOrderService.approveOrder
+Authorization: {{managerAuth}}
+Content-Type: application/json
+
+{}
+
+### Should SUCCEED 200 (Manager CAN call rejectOrder)
+POST {{baseUrl}}/odata/v4/purchase-order/PurchaseOrders(ID={{poId}},IsActiveEntity=true)/PurchaseOrderService.rejectOrder
+Authorization: {{managerAuth}}
+Content-Type: application/json
+
+{ "reason": "Budget exceeded" }
+
+### Should FAIL 403 (Manager cannot access Suppliers)
+GET {{baseUrl}}/odata/v4/purchase-order/Suppliers
+Authorization: {{managerAuth}}
+
+### Should SUCCEED 200 (Manager can READ Products)
+GET {{baseUrl}}/odata/v4/purchase-order/Products
+Authorization: {{managerAuth}}
+
+### Should FAIL 403 (Manager cannot CREATE a Product)
+POST {{baseUrl}}/odata/v4/purchase-order/Products
+Authorization: {{managerAuth}}
+Content-Type: application/json
+
+{
+  "name": "Manager Created Product",
+  "price": 20.00,
+  "stock": 10
+}
+
+### Should FAIL 403 (Manager cannot UPDATE a Product)
+PATCH {{baseUrl}}/odata/v4/purchase-order/Products(ID={{productId}})
+Authorization: {{managerAuth}}
+Content-Type: application/json
+
+{
+  "price": 99.00
+}
+
+
+### ════════════════════════════════════════════════════════════
+### 3. ADMINISTRATOR — full access everywhere, including delete,
+###    Suppliers, and Products master data
+### ════════════════════════════════════════════════════════════
+
+### Should SUCCEED 200 (Admin can READ POs)
+GET {{baseUrl}}/odata/v4/purchase-order/PurchaseOrders
+Authorization: {{adminAuth}}
+
+### Should SUCCEED 201 (Admin can CREATE a PO)
+POST {{baseUrl}}/odata/v4/purchase-order/PurchaseOrders
+Authorization: {{adminAuth}}
+Content-Type: application/json
+
+{
+  "poNumber": "PO-ADMIN-001",
+  "supplier_ID": "{{supplierId}}",
+  "orderDate": "2026-06-23",
+  "status": "Draft"
+}
+
+### Should SUCCEED 200 (Admin can UPDATE a PO)
+PATCH {{baseUrl}}/odata/v4/purchase-order/PurchaseOrders(ID={{poId}},IsActiveEntity=true)
+Authorization: {{adminAuth}}
+Content-Type: application/json
+
+{
+  "poNumber": "PO-ADMIN-EDITED"
+}
+
+### Should SUCCEED 204 (Admin can DELETE a PO)
+DELETE {{baseUrl}}/odata/v4/purchase-order/PurchaseOrders(ID={{poId}},IsActiveEntity=true)
+Authorization: {{adminAuth}}
+
+### Should SUCCEED 204 (Admin can DELETE a POItem)
+DELETE {{baseUrl}}/odata/v4/purchase-order/POItems(ID={{itemId}},IsActiveEntity=true)
+Authorization: {{adminAuth}}
+
+### Should SUCCEED 200 (Admin CAN call submitOrder)
+POST {{baseUrl}}/odata/v4/purchase-order/PurchaseOrders(ID={{poId}},IsActiveEntity=true)/PurchaseOrderService.submitOrder
+Authorization: {{adminAuth}}
+Content-Type: application/json
+
+{}
+
+### Should SUCCEED 200 (Admin CAN call approveOrder)
+POST {{baseUrl}}/odata/v4/purchase-order/PurchaseOrders(ID={{poId}},IsActiveEntity=true)/PurchaseOrderService.approveOrder
+Authorization: {{adminAuth}}
+Content-Type: application/json
+
+{}
+
+### Should SUCCEED 200 (Admin CAN call rejectOrder)
+POST {{baseUrl}}/odata/v4/purchase-order/PurchaseOrders(ID={{poId}},IsActiveEntity=true)/PurchaseOrderService.rejectOrder
+Authorization: {{adminAuth}}
+Content-Type: application/json
+
+{ "reason": "Test reject" }
+
+### Should SUCCEED 200 (Admin can READ Suppliers)
+GET {{baseUrl}}/odata/v4/purchase-order/Suppliers
+Authorization: {{adminAuth}}
+
+### Should SUCCEED 201 (Admin can CREATE a Supplier)
+POST {{baseUrl}}/odata/v4/purchase-order/Suppliers
+Authorization: {{adminAuth}}
+Content-Type: application/json
+
+{
+  "name": "Admin Created Supplier",
+  "city": "Bengaluru",
+  "country": "India"
+}
+
+### Should SUCCEED 200 (Admin can UPDATE a Supplier)
+PATCH {{baseUrl}}/odata/v4/purchase-order/Suppliers(ID={{supplierId}})
+Authorization: {{adminAuth}}
+Content-Type: application/json
+
+{
+  "city": "Mumbai"
+}
+
+### Should SUCCEED 204 (Admin can DELETE a Supplier)
+DELETE {{baseUrl}}/odata/v4/purchase-order/Suppliers(ID={{supplierId}})
+Authorization: {{adminAuth}}
+
+### Should SUCCEED 201 (Admin can CREATE a Product)
+POST {{baseUrl}}/odata/v4/purchase-order/Products
+Authorization: {{adminAuth}}
+Content-Type: application/json
+
+{
+  "name": "Admin Created Product",
+  "price": 50.00,
+  "stock": 25
+}
+
+### Should SUCCEED 200 (Admin can UPDATE a Product)
+PATCH {{baseUrl}}/odata/v4/purchase-order/Products(ID={{productId}})
+Authorization: {{adminAuth}}
+Content-Type: application/json
+
+{
+  "price": 75.00
+}
+
+### Should SUCCEED 204 (Admin can DELETE a Product)
+DELETE {{baseUrl}}/odata/v4/purchase-order/Products(ID={{productId}})
+Authorization: {{adminAuth}}

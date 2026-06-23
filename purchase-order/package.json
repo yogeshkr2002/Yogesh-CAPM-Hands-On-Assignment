@@ -13,17 +13,36 @@
     "watch-project1": "cds watch --open project1/index.html?sap-ui-xx-viewCache=false --livereload false"
   },
   "private": true,
+
   "cds": {
     "requires": {
-      "db": {
-        "kind": "sqlite",
-        "model": "db",
-        "credentials": {
-          "database": "db/purchase-order.db"
+      "auth": {
+        "kind": "xsuaa",
+        "[development]": {
+          "kind": "mocked",
+          "users": {
+            "viewer": {
+              "password": "viewer",
+              "roles": ["Viewer"]
+            },
+            "manager": {
+              "password": "manager",
+              "roles": ["PurchaseManager", "Viewer"]
+            },
+            "admin": {
+              "password": "admin",
+              "roles": ["Administrator", "PurchaseManager", "Viewer"]
+            },
+            "anonymous": {
+              "password": "anon",
+              "roles": []
+            }
+          }
         }
       }
     }
   },
+
   "workspaces": [
     "app/*"
   ],
