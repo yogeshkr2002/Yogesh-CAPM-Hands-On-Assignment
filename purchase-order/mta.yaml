@@ -1,32 +1,20 @@
 _schema-version: 3.3.0
 ID: purchase-order
 version: 1.0.0
-description: "A simple CAP project."
+description: "Purchase Order Management CAP Application"
 parameters:
   enable-parallel-deployments: true
+
 build-parameters:
   before-all:
     - builder: custom
       commands:
         - npm ci
         - npx cds build --production
-modules:
-  - name: purchase-order-srv
-    type: nodejs
-    path: gen/srv
-    parameters:
-      instances: 1
-      buildpack: nodejs_buildpack
-    build-parameters:
-      builder: npm-ci
-    provides:
-      - name: srv-api # required by consumers of CAP services (e.g. approuter)
-        properties:
-          srv-url: ${default-url}
-    requires:
-      - name: purchase-order-auth
-      - name: purchase-order-db
 
+modules:
+
+  # ── 1. HANA DB Deployer ────────────────────────────────────
   - name: purchase-order-db-deployer
     type: hdb
     path: gen/db
@@ -34,7 +22,27 @@ modules:
       buildpack: nodejs_buildpack
     requires:
       - name: purchase-order-db
-  - name: purchase-order
+
+  # ── 2. CAP Backend Service ─────────────────────────────────
+  - name: purchase-order-srv
+    type: nodejs
+    path: gen/srv
+    parameters:
+      buildpack: nodejs_buildpack
+      memory: 256M
+      disk-quota: 512M
+    build-parameters:
+      builder: npm-ci
+    provides:
+      - name: srv-api
+        properties:
+          srv-url: ${default-url}
+    requires:
+      - name: purchase-order-auth
+      - name: purchase-order-db
+
+  # ── 3. Application Router ──────────────────────────────────
+  - name: purchase-order-approuter
     type: approuter.nodejs
     path: app/router
     parameters:
@@ -45,17 +53,14 @@ modules:
       - name: srv-api
         group: destinations
         properties:
-          name: srv-api # must be used in xs-app.json as well
+          name: srv-api
           url: ~{srv-url}
           forwardAuthToken: true
       - name: purchase-order-auth
-    provides:
-      - name: app-api
-        properties:
-          app-protocol: ${protocol}
-          app-uri: ${default-uri}
 
 resources:
+
+  # ── XSUAA (authentication) ─────────────────────────────────
   - name: purchase-order-auth
     type: org.cloudfoundry.managed-service
     parameters:
@@ -65,14 +70,8 @@ resources:
       config:
         xsappname: purchase-order-${org}-${space}
         tenant-mode: dedicated
-        oauth2-configuration:
-          credential-types:
-            - "binding-secret"
-            - "x509"
-          redirect-uris:
-            - https://*~{app-api/app-uri}/**
-    requires:
-      - name: app-api
+
+  # ── HANA HDI Container (database) ─────────────────────────
   - name: purchase-order-db
     type: com.sap.xs.hdi-container
     parameters:
