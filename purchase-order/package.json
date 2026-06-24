@@ -2,10 +2,13 @@
   "name": "purchase-order",
   "version": "1.0.0",
   "dependencies": {
-    "@sap/cds": "^9"
+    "@cap-js/hana": "^2.8.0",
+    "@sap/cds": "^9",
+    "@sap/xssec": "^4.13.0"
   },
   "devDependencies": {
     "@cap-js/sqlite": "^2.4",
+    "@sap/cds-dk": "^9",
     "cds-plugin-ui5": "^0.17.0"
   },
   "scripts": {
@@ -13,7 +16,6 @@
     "watch-project1": "cds watch --open project1/index.html?sap-ui-xx-viewCache=false --livereload false"
   },
   "private": true,
-
   "cds": {
     "requires": {
       "auth": {
@@ -23,15 +25,24 @@
           "users": {
             "viewer": {
               "password": "viewer",
-              "roles": ["Viewer"]
+              "roles": [
+                "Viewer"
+              ]
             },
             "manager": {
               "password": "manager",
-              "roles": ["PurchaseManager", "Viewer"]
+              "roles": [
+                "PurchaseManager",
+                "Viewer"
+              ]
             },
             "admin": {
               "password": "admin",
-              "roles": ["Administrator", "PurchaseManager", "Viewer"]
+              "roles": [
+                "Administrator",
+                "PurchaseManager",
+                "Viewer"
+              ]
             },
             "anonymous": {
               "password": "anon",
@@ -42,7 +53,6 @@
       }
     }
   },
-
   "workspaces": [
     "app/*"
   ],

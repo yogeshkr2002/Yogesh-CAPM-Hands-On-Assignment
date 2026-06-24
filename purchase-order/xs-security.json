@@ -1,5 +1,5 @@
 {
-  "xsappname": "po-management",
+  "xsappname": "purchase-order",
   "tenant-mode": "dedicated",
   "scopes": [
     {
@@ -21,6 +21,18 @@
     {
       "name": "$XSAPPNAME.Admin",
       "description": "Full administrative access including Suppliers and Products master data"
+    },
+    {
+      "name": "$XSAPPNAME.Viewer",
+      "description": "Viewer"
+    },
+    {
+      "name": "$XSAPPNAME.PurchaseManager",
+      "description": "PurchaseManager"
+    },
+    {
+      "name": "$XSAPPNAME.Administrator",
+      "description": "Administrator"
     }
   ],
   "attributes": [],
