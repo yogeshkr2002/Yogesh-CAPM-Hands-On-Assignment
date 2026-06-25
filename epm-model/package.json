@@ -11,7 +11,8 @@
   "scripts": {
     "start": "cds-serve",
     "watch-products-app": "cds watch --open productsapp/index.html?sap-ui-xx-viewCache=false --livereload false",
-    "watch-sales-orders-app": "cds watch --open salesordersapp/index.html?sap-ui-xx-viewCache=false --livereload false"
+    "watch-sales-orders-app": "cds watch --open salesordersapp/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-purchase-orders-app": "cds watch --open purchaseordersapp/index.html?sap-ui-xx-viewCache=false --livereload false"
   },
   "private": true,
   "workspaces": [
@@ -19,6 +20,7 @@
   ],
   "sapux": [
     "app/products-app",
-    "app/sales-orders-app"
+    "app/sales-orders-app",
+    "app/purchase-orders-app"
   ]
 }
