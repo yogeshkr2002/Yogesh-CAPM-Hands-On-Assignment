@@ -1,0 +1,6 @@
+ID,categoryName,description,parentCategory_ID,createdAt,createdBy,modifiedAt,modifiedBy
+87351940-e8b7-4905-b90a-b4bc510100dd,Electronics,Electronic devices and components,,2024-01-01T00:00:00.000Z,admin@epm.com,2024-01-01T00:00:00.000Z,admin@epm.com
+31310431-e31d-4596-8cca-8213c086971e,Office Supplies,Stationery and office equipment,,2024-01-01T00:00:00.000Z,admin@epm.com,2024-01-01T00:00:00.000Z,admin@epm.com
+31310432-90cf-42f4-8a4e-fc09512ccc6d,Furniture,Office and home furniture,,2024-01-01T00:00:00.000Z,admin@epm.com,2024-01-01T00:00:00.000Z,admin@epm.com
+31310433-bfd5-42d3-b20c-7f8e8b03f32d,Clothing,Apparel and accessories,,2024-01-01T00:00:00.000Z,admin@epm.com,2024-01-01T00:00:00.000Z,admin@epm.com
+31310434-89eb-4864-bddf-a7e18b2c8d7e,Tools,Hardware and industrial tools,,2024-01-01T00:00:00.000Z,admin@epm.com,2024-01-01T00:00:00.000Z,admin@epm.com

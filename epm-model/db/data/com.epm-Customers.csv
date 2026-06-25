@@ -1,0 +1,6 @@
+ID,customerName,email,phone,street,city,state,pincode,country_code,creditLimit,createdAt,createdBy,modifiedAt,modifiedBy
+64315681-9895-4132-b929-4d2cd16d0faa,Infosys Ltd,procurement@infosys.com,080-12345678,Electronics City,Bangalore,Karnataka,560100,IN,5000000.00,2024-01-01T00:00:00.000Z,admin@epm.com,2024-01-01T00:00:00.000Z,admin@epm.com
+4709126d-e935-4399-8397-b2e810344cf0,Tata Consultancy Services,purchase@tcs.com,022-67789900,TCS House Raveline Street,Mumbai,Maharashtra,400001,IN,10000000.00,2024-01-01T00:00:00.000Z,admin@epm.com,2024-01-01T00:00:00.000Z,admin@epm.com
+47091272-f5b2-4024-a21f-6463f52d4280,Wipro Technologies,vendors@wipro.com,080-28440011,Doddakannelli Sarjapur Road,Bangalore,Karnataka,560035,IN,7500000.00,2024-01-01T00:00:00.000Z,admin@epm.com,2024-01-01T00:00:00.000Z,admin@epm.com
+4709128c-0c6e-43c4-9d02-f40efbf8b56b,HCL Technologies,procurement@hcl.com,0120-6125000,Plot 3A Sector 126,Noida,Uttar Pradesh,201304,IN,6000000.00,2024-01-01T00:00:00.000Z,admin@epm.com,2024-01-01T00:00:00.000Z,admin@epm.com
+47091299-1729-4e76-bfbd-2852d9d658a2,Tech Mahindra,supply@techmahindra.com,020-66601234,Gateway Building Mastech,Pune,Maharashtra,411001,IN,4500000.00,2024-01-01T00:00:00.000Z,admin@epm.com,2024-01-01T00:00:00.000Z,admin@epm.com

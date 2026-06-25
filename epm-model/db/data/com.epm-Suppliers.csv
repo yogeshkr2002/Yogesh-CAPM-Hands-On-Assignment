@@ -1,0 +1,6 @@
+ID,supplierName,contactPerson,email,phone,street,city,state,pincode,country_code,isActive,createdAt,createdBy,modifiedAt,modifiedBy
+16532333-a7ea-40b9-930c-b4189bebc492,TechParts India,Amit Shah,amit@techparts.in,9876543210,100 MG Road,Bangalore,Karnataka,560001,IN,true,2024-01-01T00:00:00.000Z,admin@epm.com,2024-01-01T00:00:00.000Z,admin@epm.com
+23173700-1124-40db-a6a1-f513d3e1fc68,Global Electronics,Sarah Johnson,sarah@globalelec.com,+1-555-0101,200 Tech Blvd,San Jose,California,95110,US,true,2024-01-01T00:00:00.000Z,admin@epm.com,2024-01-01T00:00:00.000Z,admin@epm.com
+23173701-bfad-44a2-920a-d4d7a14810e4,Deutsche Komponenten,Hans Mueller,hans@deutsche-komp.de,+49-89-12345,50 Industriestr,Munich,Bavaria,80331,DE,true,2024-01-01T00:00:00.000Z,admin@epm.com,2024-01-01T00:00:00.000Z,admin@epm.com
+23173702-789c-4e66-ab9c-f79b11545fd8,BritTech Supplies,Emma Wilson,emma@brittech.co.uk,+44-20-7946,30 Baker Street,London,England,W1U3BW,GB,true,2024-01-01T00:00:00.000Z,admin@epm.com,2024-01-01T00:00:00.000Z,admin@epm.com
+23173703-32b3-4c3e-9a57-31f728c5704a,Nippon Parts Co,Kenji Tanaka,kenji@nipponparts.jp,+81-3-1234,10 Shibuya,Tokyo,Tokyo,1500002,JP,true,2024-01-01T00:00:00.000Z,admin@epm.com,2024-01-01T00:00:00.000Z,admin@epm.com
