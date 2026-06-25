@@ -1,0 +1,116 @@
+_schema-version: 3.3.0
+ID: epm-model
+version: 1.0.0
+description: "EPM - Enterprise Procurement Model"
+parameters:
+  enable-parallel-deployments: true
+
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npm ci
+        - npx cds build --production
+
+modules:
+
+# ─── CAP Backend Server ───────────────────────────────────────
+  - name: epm-model-srv
+    type: nodejs
+    path: gen/srv
+    parameters:
+      instances: 1
+      buildpack: nodejs_buildpack
+    build-parameters:
+      builder: npm-ci
+    provides:
+      - name: srv-api
+        properties:
+          srv-url: ${default-url}
+    requires:
+      - name: epm-model-db
+
+# ─── HANA DB Deployer ────────────────────────────────────────
+  - name: epm-model-db-deployer
+    type: hdb
+    path: gen/db
+    parameters:
+      buildpack: nodejs_buildpack
+    requires:
+      - name: epm-model-db
+
+# ─── Fiori App: Products ─────────────────────────────────────
+  - name: epm-model-products-app
+    type: html5
+    path: app/products-app
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+        - npm install
+        - npm run build
+      supported-platforms: []
+
+# ─── Fiori App: Sales Orders ─────────────────────────────────
+  - name: epm-model-sales-orders-app
+    type: html5
+    path: app/sales-orders-app
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+        - npm install
+        - npm run build
+      supported-platforms: []
+
+# ─── Fiori App: Purchase Orders ──────────────────────────────
+  - name: epm-model-purchase-orders-app
+    type: html5
+    path: app/purchase-orders-app
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+        - npm install
+        - npm run build
+      supported-platforms: []
+
+# ─── App Router ──────────────────────────────────────────────
+  - name: epm-model-approuter
+    type: approuter.nodejs
+    path: app/
+    parameters:
+      keep-existing-routes: true
+      disk-quota: 256M
+      memory: 256M
+    requires:
+      - name: srv-api
+        group: destinations
+        properties:
+          name: srv-api
+          url: ~{srv-url}
+          forwardAuthToken: true
+      - name: epm-model-db
+    build-parameters:
+      requires:
+        - name: epm-model-products-app
+          artifacts:
+            - dist/
+          target-path: resources/products-app/
+        - name: epm-model-sales-orders-app
+          artifacts:
+            - dist/
+          target-path: resources/sales-orders-app/
+        - name: epm-model-purchase-orders-app
+          artifacts:
+            - dist/
+          target-path: resources/purchase-orders-app/
+
+resources:
+
+# ─── HANA HDI Container ──────────────────────────────────────
+  - name: epm-model-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared

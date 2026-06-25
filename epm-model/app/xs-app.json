@@ -1,0 +1,36 @@
+{
+  "welcomeFile": "/products-app/index.html",
+  "authenticationMethod": "none",
+  "routes": [
+    {
+      "source": "^/products-app/(.*)$",
+      "target": "$1",
+      "localDir": "resources/products-app"
+    },
+    {
+      "source": "^/sales-orders-app/(.*)$",
+      "target": "$1",
+      "localDir": "resources/sales-orders-app"
+    },
+    {
+      "source": "^/purchase-orders-app/(.*)$",
+      "target": "$1",
+      "localDir": "resources/purchase-orders-app"
+    },
+    {
+      "source": "^/master-data/(.*)$",
+      "target": "/master-data/$1",
+      "destination": "srv-api"
+    },
+    {
+      "source": "^/sales/(.*)$",
+      "target": "/sales/$1",
+      "destination": "srv-api"
+    },
+    {
+      "source": "^/procurement/(.*)$",
+      "target": "/procurement/$1",
+      "destination": "srv-api"
+    }
+  ]
+}

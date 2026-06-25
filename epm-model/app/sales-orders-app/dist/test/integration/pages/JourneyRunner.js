@@ -1,0 +1,2 @@
+sap.ui.define(["sap/fe/test/JourneyRunner","salesordersapp/test/integration/pages/SalesOrdersList","salesordersapp/test/integration/pages/SalesOrdersObjectPage","salesordersapp/test/integration/pages/SalesOrderItemsObjectPage"],function(e,s,r,a){"use strict";var t=new e({launchUrl:sap.ui.require.toUrl("salesordersapp")+"/test/flp.html#app-preview",pages:{onTheSalesOrdersList:s,onTheSalesOrdersObjectPage:r,onTheSalesOrderItemsObjectPage:a},async:true});return t});
+//# sourceMappingURL=JourneyRunner.js.map
