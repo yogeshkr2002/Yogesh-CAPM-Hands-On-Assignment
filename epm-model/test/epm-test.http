@@ -1,0 +1,186 @@
+### ─── BASE URL ─────────────────────────────────────────────
+@base = http://localhost:4004
+
+
+### ═══════════════════════════════════════════════════════════
+###  MASTER DATA SERVICE — Read Tests
+### ═══════════════════════════════════════════════════════════
+
+### Get all Suppliers
+GET {{base}}/master-data/Suppliers
+
+###
+
+### Get all Categories
+GET {{base}}/master-data/Categories
+
+###
+
+### Get all Products
+GET {{base}}/master-data/Products
+
+###
+
+### Get one Product by ID
+GET {{base}}/master-data/Products/22339209-2694-45c2-91d7-d1aa2b4472c4
+
+###
+
+### Get Products with Supplier expanded
+GET {{base}}/master-data/Products?$expand=supplier,category
+
+
+### ═══════════════════════════════════════════════════════════
+###  SALES SERVICE — Read Tests
+### ═══════════════════════════════════════════════════════════
+
+### Get all Customers
+GET {{base}}/sales/Customers
+
+###
+
+### Get all Sales Orders
+GET {{base}}/sales/SalesOrders
+
+###
+
+### Get Sales Orders with Customer and Items expanded
+GET {{base}}/sales/SalesOrders?$expand=customer,items
+
+###
+
+### Filter Sales Orders by status
+GET {{base}}/sales/SalesOrders?$filter=status eq 'New'
+
+###
+
+### Get Sales Order Items
+GET {{base}}/sales/SalesOrderItems
+
+
+### ═══════════════════════════════════════════════════════════
+###  PROCUREMENT SERVICE — Read Tests
+### ═══════════════════════════════════════════════════════════
+
+### Get all Purchase Orders
+GET {{base}}/procurement/PurchaseOrders
+
+###
+
+### Get Purchase Orders with Supplier and Items expanded
+GET {{base}}/procurement/PurchaseOrders?$expand=supplier,items
+
+###
+
+### Get Stock
+GET {{base}}/procurement/Stock
+
+
+### ═══════════════════════════════════════════════════════════
+###  SALES SERVICE — CREATE Tests (Handler Validation)
+### ═══════════════════════════════════════════════════════════
+
+### ✅ Test 1 — Create Sales Order with VALID customer (should succeed)
+POST {{base}}/sales/SalesOrders
+Content-Type: application/json
+
+{
+  "customer_ID": "64315681-9895-4132-b929-4d2cd16d0faa",
+  "orderDate": "2024-06-01",
+  "deliveryDate": "2024-06-15",
+  "status": "New",
+  "priority": "High",
+  "currency_code": "INR"
+}
+
+###
+
+### ✅ Test 2 — Create Sales Order Item (auto-calculates price from product)
+# Copy the ID returned from Test 1 above and paste below as order_ID
+# @name createSalesOrderItem
+POST {{base}}/sales/SalesOrderItems
+Content-Type: application/json
+
+{
+  "order_ID": "PASTE_ORDER_ID_FROM_TEST1_HERE",
+  "product_ID": "22339209-2694-45c2-91d7-d1aa2b4472c4",
+  "quantity": 2,
+  "deliveryDate": "2024-06-15"
+}
+
+###
+
+### ❌ Test 3 — Create Sales Order with FAKE customer (expect 404)
+POST {{base}}/sales/SalesOrders
+Content-Type: application/json
+
+{
+  "customer_ID": "00000000-0000-0000-0000-000000000000",
+  "orderDate": "2024-06-01",
+  "currency_code": "INR"
+}
+
+###
+
+### ❌ Test 4 — Create Sales Order with NO customer (expect 400)
+POST {{base}}/sales/SalesOrders
+Content-Type: application/json
+
+{
+  "orderDate": "2024-06-01",
+  "currency_code": "INR"
+}
+
+###
+
+### ❌ Test 5 — Create Sales Order Item with EXCESS quantity (expect 409 stock error)
+# Laptop Pro 15 has stock = 50, requesting 999
+POST {{base}}/sales/SalesOrderItems
+Content-Type: application/json
+
+{
+  "order_ID": "PASTE_ORDER_ID_FROM_TEST1_HERE",
+  "product_ID": "22339209-2694-45c2-91d7-d1aa2b4472c4",
+  "quantity": 999,
+  "deliveryDate": "2024-06-15"
+}
+
+
+### ═══════════════════════════════════════════════════════════
+###  PROCUREMENT SERVICE — CREATE Tests (Handler Validation)
+### ═══════════════════════════════════════════════════════════
+
+### ✅ Test 6 — Create Purchase Order with VALID active supplier (should succeed)
+# @name createPurchaseOrder
+POST {{base}}/procurement/PurchaseOrders
+Content-Type: application/json
+
+{
+  "supplier_ID": "16532333-a7ea-40b9-930c-b4189bebc492",
+  "orderDate": "2024-06-01",
+  "currency_code": "INR",
+  "status": "Draft"
+}
+
+###
+
+### ❌ Test 7 — Create Purchase Order with FAKE supplier (expect 404)
+POST {{base}}/procurement/PurchaseOrders
+Content-Type: application/json
+
+{
+  "supplier_ID": "00000000-0000-0000-0000-000000000000",
+  "orderDate": "2024-06-01",
+  "currency_code": "INR"
+}
+
+###
+
+### ❌ Test 8 — Create Purchase Order with NO supplier (expect 400)
+POST {{base}}/procurement/PurchaseOrders
+Content-Type: application/json
+
+{
+  "orderDate": "2024-06-01",
+  "currency_code": "INR"
+}
