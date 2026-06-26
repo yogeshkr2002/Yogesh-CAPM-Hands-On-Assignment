@@ -5,17 +5,17 @@
     {
       "source": "^/products-app/(.*)$",
       "target": "$1",
-      "localDir": "resources/products-app"
+      "localDir": "resources/products-app/dist"
     },
     {
       "source": "^/sales-orders-app/(.*)$",
       "target": "$1",
-      "localDir": "resources/sales-orders-app"
+      "localDir": "resources/sales-orders-app/dist"
     },
     {
       "source": "^/purchase-orders-app/(.*)$",
       "target": "$1",
-      "localDir": "resources/purchase-orders-app"
+      "localDir": "resources/purchase-orders-app/dist"
     },
     {
       "source": "^/master-data/(.*)$",
